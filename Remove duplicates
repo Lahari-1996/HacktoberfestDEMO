@@ -1,0 +1,43 @@
+import java.io.*;
+import java.util.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.toList;
+
+public class Main{ public static void main(String[] args)throws IOException{
+        BufferedReader bf=new BufferedReader(new InputStreamReader(System.in));
+        int tc=Integer.parseInt(bf.readLine().trim());
+        for(int i=0;i<tc;i++){
+            int n = Integer.parseInt(bf.readLine().trim());
+            List<Integer> ls=Stream.of(bf.readLine().trim().split(" "))
+            .map(Integer::parseInt).collect(Collectors.toList());
+            check(ls,n);
+        }
+
+}
+
+
+public static void check(List<Integer>ls, int n){
+    // System.out.println(n);
+    int i=0;
+    int j=ls.size()-1;
+    
+    while((j-i)>0){
+        if(ls.get(i)==ls.get(i+1)){
+            ls.remove(i+1);
+            j--;
+        }
+        else{
+            i++;
+        }
+        
+        if(ls.get(j)==ls.get(j-1)){
+            ls.remove(j);
+            
+        }
+       j--;
+    }
+    System.out.println(ls.size());
+    ls.forEach(s->System.out.print(s+" "));
+    System.out.println();
+}
+}
